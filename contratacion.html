@@ -404,15 +404,15 @@
       <div class="res-row"><span class="rk">Negocio</span><span class="rv m" id="r-neg">—</span></div>
       <div class="res-row"><span class="rk">Responsable</span><span class="rv m" id="r-nom">—</span></div>
       <div class="res-row"><span class="rk">URL</span><span class="rv m" id="r-sub">—</span></div>
-      <div class="res-row"><span class="rk">Comprobante</span><span class="rv" id="r-com">Boleta</span></div>
-      <div class="res-row"><span class="rk">Inversión inicial</span><span class="rv p" id="r-ini">S/ 350</span></div>
-      <div class="res-row"><span class="rk">Plan</span><span class="rv p" id="r-pla">Business ⚡</span></div>
-      <div class="res-row"><span class="rk">Plazo</span><span class="rv" id="r-pla2">Mensual</span></div>
+      <div class="res-row"><span class="rk">Comprobante</span><span class="rv m" id="r-com">—</span></div>
+      <div class="res-row"><span class="rk">Inversión inicial</span><span class="rv m" id="r-ini">—</span></div>
+      <div class="res-row"><span class="rk">Plan</span><span class="rv m" id="r-pla">—</span></div>
+      <div class="res-row"><span class="rk">Plazo</span><span class="rv m" id="r-pla2">—</span></div>
       <div class="res-row"><span class="rk">Descuento membresía</span><span class="rv" id="r-desc">—</span></div>
-      <div class="res-row"><span class="rk">Membresía mensual</span><span class="rv g" id="r-mem">S/ 100/mes</span></div>
+      <div class="res-row"><span class="rk">Membresía mensual</span><span class="rv m" id="r-mem">—</span></div>
       <div style="height:0.5px;background:var(--gray-3);margin:4px 0;"></div>
-      <div class="total-row"><span class="tk">Pagas hoy</span><span class="tv" id="r-tot">S/ 350</span></div>
-      <div style="font-size:10px;color:var(--gray-5);text-align:right;margin-top:4px;" id="r-ini-note">Inversión inicial · membresía desde mes 2</div>
+      <div class="total-row"><span class="tk">Pagas hoy</span><span class="tv m" id="r-tot" style="font-size:16px;color:var(--gray-5)">—</span></div>
+      <div style="font-size:10px;color:var(--gray-5);text-align:right;margin-top:4px;display:none" id="r-ini-note">Inversión inicial · membresía desde mes 2</div>
     </div>
     <button class="btn-next" id="bn-sig" onclick="ns()">Continuar →</button>
     <button class="btn-back hidden" id="bn-ant" onclick="ps()">← Volver</button>
@@ -460,6 +460,8 @@ function rf(){
   else{bs.classList.remove('hidden');bs.textContent=step===3?'✓ Confirmar y pagar':'Continuar →';}
 }
 function sc(t){
+  document.getElementById('r-com').textContent=t==='boleta'?'Boleta':'Factura';
+  document.getElementById('r-com').className='rv';
   document.getElementById('cb-bol').classList.toggle('sel',t==='boleta');
   document.getElementById('cb-fac').classList.toggle('sel',t==='factura');
   document.getElementById('fac-box').classList.toggle('hidden',t==='boleta');
@@ -495,6 +497,10 @@ function setPlazo(idx,btn){
   ut();
 }
 function ut(){
+  document.getElementById('r-ini-note').style.display='block';
+  var tot=document.getElementById('r-tot');
+  tot.style.fontSize='22px';
+  tot.style.color='var(--amber)';
   var base=pr[mon][plan];
   var d=desc[plazoIdx];
   var membresia=d>0?Math.round(base*(1-d)):base;
