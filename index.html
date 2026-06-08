@@ -79,13 +79,6 @@
     /* Vruta también ocupa 2 columnas con layout interno 2 col */
     .app-card.vruta-card { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; --card-color: rgba(76,175,125,0.06); border-color: rgba(76,175,125,0.18); }
 
-    /* Vcontent Business — 1 columna normal, misma altura que si fuera par */
-    .app-card.vcb-card { --card-color: rgba(239,159,39,0.08); }
-
-    /* Placeholder vacío para alinear Vcontent Business a la derecha */
-    .app-card-placeholder { background: transparent; border: 0.5px dashed var(--gray-3); border-radius: 16px; padding: 32px; display: flex; align-items: center; justify-content: center; }
-    .app-card-placeholder-text { font-size: 13px; color: var(--gray-4); text-align: center; line-height: 1.6; }
-
     .app-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 18px; }
     .app-name { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.3px; }
     .app-name span { color: var(--amber); }
@@ -293,35 +286,27 @@
       </div>
     </div>
 
-    <!-- VCONTENT BUSINESS — 1 col normal -->
-    <div class="app-card vcb-card fade-up">
-      <div class="app-status" style="background:rgba(148,163,184,0.08);color:var(--gray-5);border-color:rgba(148,163,184,0.2);">⏳ Próximamente</div>
-      <div class="app-icon" style="background:rgba(239,159,39,0.12);">📱</div>
-      <div class="app-name">V<span>content</span> Business</div>
-      <p class="app-desc">Gestiona Instagram y TikTok de tu empresa con IA. Conectado con Vcontrol para sugerencias inteligentes según tu inventario y temporada.</p>
-      <div class="app-tags"><span class="app-tag">Instagram</span><span class="app-tag">TikTok</span><span class="app-tag">IA</span><span class="app-tag">Vcontrol sync</span></div>
-      <div class="app-price-inline" style="margin-top:auto;">
-        <span class="app-price-from">Precio por anunciar</span>
-        <a href="https://wa.me/51981527408?text=Hola, me interesa Vcontent Business" target="_blank" style="font-size:12px;color:var(--amber);text-decoration:none;">Avisar cuando esté →</a>
+    <!-- VRUTA — span 2 con layout interno igual que Vcontrol -->
+    <div class="app-card vruta-card fade-up">
+      <div>
+        <div class="app-status"><div class="app-status-dot"></div> Disponible</div>
+        <div class="app-icon" style="background:rgba(76,175,125,0.12);">🚚</div>
+        <div class="app-name">V<span>ruta</span></div>
+        <p class="app-desc">Gestión de rutas y entregas para marcas DTC con flota propia. Optimiza despachos con algoritmo inteligente y seguimiento en tiempo real.</p>
+        <div class="app-tags"><span class="app-tag">Rutas</span><span class="app-tag">Entregas</span><span class="app-tag">Mapa</span><span class="app-tag">Flota</span><span class="app-tag">Excel</span><span class="app-tag">Mobile</span></div>
+        <div class="app-price-inline" style="margin-top:20px;">
+          <span class="app-price-from">Desde</span>
+          <span><span class="app-price-val">S/ 180</span><span class="app-price-period"> /mes</span></span>
+        </div>
       </div>
-    </div>
-
-    <!-- VRUTA — 1 col normal (misma anchura que Vcontent Business) -->
-    <div class="app-card vruta-card fade-up" style="grid-column:span 1;display:flex;flex-direction:column;border-color:rgba(76,175,125,0.18);">
-      <div class="app-status"><div class="app-status-dot"></div> Disponible</div>
-      <div class="app-icon" style="background:rgba(76,175,125,0.12);">🚚</div>
-      <div class="app-name">V<span>ruta</span></div>
-      <p class="app-desc">Gestión de rutas y entregas para marcas DTC con flota propia. Optimiza despachos con algoritmo inteligente y seguimiento en tiempo real.</p>
-      <div class="app-tags"><span class="app-tag">Rutas</span><span class="app-tag">Entregas</span><span class="app-tag">Mapa</span><span class="app-tag">Flota</span><span class="app-tag">Excel</span><span class="app-tag">Mobile</span></div>
-      <div style="display:flex;flex-direction:column;gap:8px;margin:16px 0;">
+      <div style="background:var(--gray-2);border:0.5px solid var(--gray-3);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:10px;">
+        <div style="font-size:12px;color:var(--gray-5);font-weight:500;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">Para e-commerce y DTC</div>
         <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Optimización automática de ruta</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Mapa visual en tiempo real</div>
         <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> App mobile para repartidores</div>
         <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Evidencia fotográfica de entrega</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Historial y exportación Excel</div>
         <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--amber);font-weight:500;"><span style="color:var(--green);">✓</span> Conductores ilimitados incluidos</div>
-      </div>
-      <div class="app-price-inline" style="margin-top:auto;">
-        <span class="app-price-from">Desde</span>
-        <span><span class="app-price-val">S/ 180</span><span class="app-price-period"> /mes</span></span>
       </div>
     </div>
 
@@ -387,16 +372,7 @@
           <td><span class="pt-incl">Branding · Customización · 5h capacitación · Dominio · Conductores ilimitados</span></td>
           <td><span class="pt-badge-avail">Disponible</span></td>
         </tr>
-        <tr>
-          <td>
-            <div class="pt-app-name">📱 Vcontent Business</div>
-            <div class="pt-app-sub">Instagram y TikTok con IA</div>
-          </td>
-          <td><span class="pt-setup">—</span></td>
-          <td><span class="pt-price" style="font-size:14px;color:var(--gray-5);">Por anunciar</span></td>
-          <td><span class="pt-incl">Branding · Customización · 5h capacitación · Dominio</span></td>
-          <td><span class="pt-badge-soon">Próximamente</span></td>
-        </tr>
+
       </tbody>
     </table>
 
@@ -497,7 +473,6 @@
             <option value="Vcontrol">📦 Vcontrol — Gestión comercial</option>
             <option value="Vruta">🚚 Vruta — Rutas y entregas</option>
             <option value="Ambas">📦🚚 Ambas apps</option>
-            <option value="Vcontent Business">📱 Vcontent Business (próximamente)</option>
           </select>
         </div>
 
