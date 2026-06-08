@@ -14,7 +14,6 @@
       --amber: #D97706;
       --copper-dim: rgba(184,115,51,0.12);
       --green: #4CAF7D;
-      --gold: #c9a84c;
       --gray-1: #111827;
       --gray-2: #1A2235;
       --gray-3: #243044;
@@ -25,14 +24,10 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-weight: 300; overflow-x: hidden; line-height: 1.6; }
-    h1, h2, h3, h4, .nav-logo { font-family: 'Montserrat', sans-serif; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
 
     /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: rgba(11,17,32,0.92); backdrop-filter: blur(20px); border-bottom: 0.5px solid rgba(184,115,51,0.08); }
-    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: -0.5px; }
-    .nav-logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, #B87333, #D97706); border-radius: 9px; display: flex; align-items: center; justify-content: center; }
-    .nav-logo-icon svg { width: 16px; height: 16px; }
-    .nav-logo span { color: var(--amber); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: rgba(11,17,32,0.92); backdrop-filter: blur(20px); border-bottom: 0.5px solid rgba(184,115,51,0.08); transition: border-color 0.3s; }
     .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
     .nav-links a { color: var(--gray-5); text-decoration: none; font-size: 14px; transition: color 0.2s; }
     .nav-links a:hover { color: var(--white); }
@@ -48,7 +43,7 @@
     .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%); }
     .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 8px; background: var(--copper-dim); border: 0.5px solid rgba(184,115,51,0.3); border-radius: 99px; font-size: 12px; color: var(--amber); margin-bottom: 28px; position: relative; }
     .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)} }
     .hero h1 { font-size: clamp(42px, 7vw, 88px); font-weight: 800; line-height: 1.05; letter-spacing: -2px; margin-bottom: 24px; position: relative; }
     .hero h1 .accent { color: var(--amber); }
     .hero h1 .line2 { display: block; color: var(--gray-5); font-weight: 500; }
@@ -67,106 +62,85 @@
     /* SECTIONS */
     .section { padding: 100px 24px; max-width: 1100px; margin: 0 auto; }
     .section-label { font-size: 11px; font-weight: 500; color: var(--amber); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px; }
-    .section-title { font-size: clamp(28px, 4vw, 44px); font-weight: 700; letter-spacing: -1px; line-height: 1.15; margin-bottom: 16px; font-family: 'Montserrat', sans-serif; }
+    .section-title { font-size: clamp(28px, 4vw, 44px); font-weight: 700; letter-spacing: -1px; line-height: 1.15; margin-bottom: 16px; }
     .section-desc { font-size: 16px; color: var(--gray-5); max-width: 480px; line-height: 1.7; margin-bottom: 56px; }
 
-    /* APPS GRID */
+    /* APPS GRID — todas las cards igual de anchas en grilla 2 col */
     .apps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .app-card { background: var(--gray-1); border: 0.5px solid var(--gray-3); border-radius: 16px; padding: 32px; transition: all 0.3s; position: relative; overflow: hidden; }
-    .app-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--card-color, rgba(108,99,255,0.05)) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; }
+
+    .app-card { background: var(--gray-1); border: 0.5px solid var(--gray-3); border-radius: 16px; padding: 32px; transition: all 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+    .app-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg, var(--card-color, rgba(108,99,255,0.05)) 0%, transparent 60%); opacity:0; transition:opacity 0.3s; }
     .app-card:hover { border-color: var(--gray-4); transform: translateY(-3px); }
     .app-card:hover::before { opacity: 1; }
+
+    /* Vcontrol ocupa las 2 columnas con layout interno 2 col */
     .app-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; --card-color: rgba(184,115,51,0.08); }
-    .app-card.vruta-card { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; --card-color: rgba(76,175,125,0.06); border-color: rgba(76,175,125,0.2); }
+
+    /* Vruta también ocupa 2 columnas con layout interno 2 col */
+    .app-card.vruta-card { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; --card-color: rgba(76,175,125,0.06); border-color: rgba(76,175,125,0.18); }
+
+    /* Vcontent Business — 1 columna normal, misma altura que si fuera par */
+    .app-card.vcb-card { --card-color: rgba(239,159,39,0.08); }
+
+    /* Placeholder vacío para alinear Vcontent Business a la derecha */
+    .app-card-placeholder { background: transparent; border: 0.5px dashed var(--gray-3); border-radius: 16px; padding: 32px; display: flex; align-items: center; justify-content: center; }
+    .app-card-placeholder-text { font-size: 13px; color: var(--gray-4); text-align: center; line-height: 1.6; }
+
     .app-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 18px; }
     .app-name { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.3px; }
     .app-name span { color: var(--amber); }
-    .app-desc { font-size: 14px; color: var(--gray-5); line-height: 1.6; margin-bottom: 20px; }
-    .app-tags { display: flex; gap: 7px; flex-wrap: wrap; }
+    .app-desc { font-size: 14px; color: var(--gray-5); line-height: 1.6; margin-bottom: 16px; }
+    .app-tags { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 20px; }
     .app-tag { font-size: 11px; padding: 3px 10px; border-radius: 99px; background: var(--gray-2); color: var(--gray-5); border: 0.5px solid var(--gray-3); }
     .app-status { font-size: 10px; padding: 3px 10px; border-radius: 99px; background: rgba(76,175,125,0.1); color: var(--green); border: 0.5px solid rgba(76,175,125,0.25); display: inline-flex; align-items: center; gap: 5px; margin-bottom: 16px; }
     .app-status-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); }
 
-    /* PRICING */
-    .pricing-section { padding: 100px 24px; background: var(--gray-1); border-top: 0.5px solid var(--gray-3); border-bottom: 0.5px solid var(--gray-3); }
+    /* Precio inline en card de app */
+    .app-price-inline { margin-top: auto; padding-top: 16px; border-top: 0.5px solid var(--gray-3); display: flex; align-items: center; justify-content: space-between; }
+    .app-price-from { font-size: 11px; color: var(--gray-5); }
+    .app-price-val { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: var(--amber); }
+    .app-price-period { font-size: 11px; color: var(--gray-5); font-weight: 300; }
+
+    /* PRICING SIMPLIFICADA */
+    .pricing-section { padding: 80px 24px; background: var(--gray-1); border-top: 0.5px solid var(--gray-3); border-bottom: 0.5px solid var(--gray-3); }
     .pricing-inner { max-width: 1060px; margin: 0 auto; }
-
-    .pricing-controls { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 16px; }
-
-    /* Currency switch */
+    .pricing-controls { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
     .currency-switch { display: flex; align-items: center; gap: 10px; }
     .currency-label { font-size: 13px; color: var(--gray-5); }
     .currency-label.active { color: var(--white); font-weight: 500; }
-    .switch-track { width: 44px; height: 24px; border-radius: 99px; background: var(--copper); cursor: pointer; position: relative; transition: background 0.2s; border: none; }
+    .switch-track { width: 44px; height: 24px; border-radius: 99px; background: var(--copper); cursor: pointer; position: relative; border: none; }
     .switch-knob { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform 0.2s; }
     .switch-track.usd .switch-knob { transform: translateX(20px); }
-
-    /* Plazo selector */
     .plazo-tabs { display: flex; gap: 4px; background: var(--gray-2); border: 0.5px solid var(--gray-3); border-radius: 10px; padding: 4px; }
     .plazo-tab { padding: 7px 16px; border-radius: 7px; font-size: 12px; color: var(--gray-5); cursor: pointer; border: none; background: transparent; font-family: 'Inter', sans-serif; transition: all 0.15s; white-space: nowrap; }
     .plazo-tab.active { background: var(--copper); color: #fff; font-weight: 600; }
     .descuento-badge { font-size: 10px; padding: 2px 8px; border-radius: 99px; background: rgba(76,175,125,0.12); color: var(--green); border: 0.5px solid rgba(76,175,125,0.2); margin-left: 4px; }
 
-    /* App pricing cards */
-    .pricing-apps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 24px; }
+    /* Tabla comparativa simplificada */
+    .pricing-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+    .pricing-table th { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--gray-5); text-transform: uppercase; letter-spacing: 0.8px; padding: 12px 20px; text-align: left; border-bottom: 0.5px solid var(--gray-3); }
+    .pricing-table th:not(:first-child) { text-align: center; }
+    .pricing-table td { padding: 16px 20px; border-bottom: 0.5px solid var(--gray-3); font-size: 14px; color: var(--gray-6); vertical-align: middle; }
+    .pricing-table td:not(:first-child) { text-align: center; }
+    .pricing-table tr:last-child td { border-bottom: none; }
+    .pricing-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .pt-app-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; color: var(--white); }
+    .pt-app-sub { font-size: 12px; color: var(--gray-5); margin-top: 2px; }
+    .pt-price { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); }
+    .pt-price-orig { font-size: 12px; color: var(--gray-4); text-decoration: line-through; display: block; margin-top: 2px; }
+    .pt-setup { font-size: 14px; color: var(--gray-6); }
+    .pt-badge-avail { font-size: 10px; padding: 3px 10px; border-radius: 99px; background: rgba(76,175,125,0.1); color: var(--green); border: 0.5px solid rgba(76,175,125,0.25); display: inline-block; }
+    .pt-badge-soon { font-size: 10px; padding: 3px 10px; border-radius: 99px; background: rgba(148,163,184,0.08); color: var(--gray-5); border: 0.5px solid rgba(148,163,184,0.2); display: inline-block; }
+    .pt-incl { font-size: 12px; color: var(--gray-5); }
 
-    .pricing-app-card { background: var(--gray-2); border: 0.5px solid var(--gray-3); border-radius: 16px; padding: 32px; display: flex; flex-direction: column; transition: all 0.3s; }
-    .pricing-app-card:hover { transform: translateY(-3px); border-color: var(--gray-4); }
-    .pricing-app-card.available { border-color: var(--copper); background: linear-gradient(135deg, rgba(184,115,51,0.07) 0%, var(--gray-2) 100%); }
-
-    .pricing-app-card.soon { opacity: 0.7; border-style: dashed; border-color: var(--gray-3); grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
-
-    .pac-status { font-size: 10px; padding: 3px 10px; border-radius: 99px; display: inline-flex; align-items: center; gap: 5px; margin-bottom: 16px; }
-    .pac-status.live { background: rgba(76,175,125,0.1); color: var(--green); border: 0.5px solid rgba(76,175,125,0.25); }
-    .pac-status.coming { background: rgba(148,163,184,0.08); color: var(--gray-5); border: 0.5px solid rgba(148,163,184,0.2); }
-    .pac-status-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); }
-
-    .pac-icon { font-size: 28px; margin-bottom: 12px; }
-    .pac-name { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.3px; }
-    .pac-name span { color: var(--amber); }
-    .pac-desc { font-size: 14px; color: var(--gray-5); line-height: 1.6; margin-bottom: 20px; }
-
-    /* Setup block */
-    .setup-block { background: rgba(184,115,51,0.07); border: 0.5px solid rgba(184,115,51,0.22); border-radius: 12px; padding: 16px 18px; margin-bottom: 12px; }
-    .setup-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-    .setup-label { font-size: 11px; color: var(--amber); text-transform: uppercase; letter-spacing: 0.6px; font-weight: 500; }
-    .setup-price { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); }
-    .setup-includes { border-top: 0.5px solid rgba(184,115,51,0.15); padding-top: 12px; display: flex; flex-direction: column; gap: 7px; }
-    .setup-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--gray-6); }
-    .setup-item-icon { font-size: 14px; flex-shrink: 0; }
-
-    /* Membresía block */
-    .mem-block { background: rgba(255,255,255,0.03); border: 0.5px solid var(--gray-3); border-radius: 12px; padding: 16px 18px; margin-bottom: 16px; }
-    .mem-header { display: flex; align-items: center; justify-content: space-between; }
-    .mem-label { font-size: 11px; color: var(--gray-5); text-transform: uppercase; letter-spacing: 0.6px; }
-    .mem-price-wrap { display: flex; align-items: baseline; gap: 6px; }
-    .mem-price { font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 800; color: var(--white); letter-spacing: -1px; }
-    .mem-price-orig { font-size: 14px; color: var(--gray-4); text-decoration: line-through; font-weight: 400; }
-    .mem-period { font-size: 12px; color: var(--gray-5); margin-top: 4px; }
-
-    .pac-divider { height: 0.5px; background: var(--gray-3); margin-bottom: 16px; }
-
-    .pac-features { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
-    .pac-feat { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--gray-6); }
-    .pac-check { color: var(--green); font-size: 13px; flex-shrink: 0; }
-    .pac-feat-highlight { color: var(--amber); font-weight: 500; }
-
-    .pac-btn { width: 100%; padding: 13px; border-radius: 10px; border: 0.5px solid var(--gray-3); background: transparent; color: var(--gray-6); font-size: 14px; font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.2s; margin-top: auto; }
-    .pac-btn:hover { border-color: var(--copper); color: var(--white); }
-    .pac-btn.primary { background: var(--copper); border-color: var(--copper); color: #fff; font-weight: 500; }
-    .pac-btn.primary:hover { background: var(--amber); }
-
-    /* Soon card interior */
-    .soon-waitlist { background: rgba(255,255,255,0.02); border: 0.5px solid var(--gray-3); border-radius: 12px; padding: 24px; text-align: center; }
-    .soon-waitlist p { font-size: 13px; color: var(--gray-5); margin-bottom: 16px; line-height: 1.6; }
+    .pricing-note { padding: 16px 20px; background: rgba(255,255,255,0.02); border: 0.5px solid var(--gray-3); border-radius: 10px; font-size: 12px; color: var(--gray-5); line-height: 1.6; }
 
     /* Add-ons */
-    .addons-section { background: var(--gray-2); border: 0.5px solid var(--gray-3); border-radius: 16px; padding: 28px 32px; margin-bottom: 24px; }
-    .addons-title { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-    .addons-desc { font-size: 13px; color: var(--gray-5); margin-bottom: 20px; }
-    .addons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .addon-card { background: var(--gray-1); border: 0.5px solid var(--gray-3); border-radius: 10px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; transition: all 0.2s; }
-    .addon-card:hover { border-color: var(--copper); }
+    .addons-section { background: var(--gray-2); border: 0.5px solid var(--gray-3); border-radius: 16px; padding: 24px 28px; margin-bottom: 24px; }
+    .addons-title { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .addons-desc { font-size: 13px; color: var(--gray-5); margin-bottom: 16px; }
+    .addons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .addon-card { background: var(--gray-1); border: 0.5px solid var(--gray-3); border-radius: 10px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
     .addon-icon { font-size: 20px; flex-shrink: 0; }
     .addon-info { flex: 1; }
     .addon-name { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 2px; }
@@ -175,23 +149,46 @@
 
     /* PROCESO */
     .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
-    .process-grid::before { content: ''; position: absolute; top: 28px; left: 14%; right: 14%; height: 0.5px; background: linear-gradient(90deg, transparent, var(--gray-3), var(--gray-3), transparent); }
+    .process-grid::before { content:''; position:absolute; top:28px; left:14%; right:14%; height:0.5px; background:linear-gradient(90deg,transparent,var(--gray-3),var(--gray-3),transparent); }
     .process-step { padding: 0 16px; text-align: center; }
     .process-num { width: 56px; height: 56px; border-radius: 50%; background: var(--gray-2); border: 0.5px solid var(--gray-3); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: var(--amber); margin: 0 auto 20px; }
     .process-title { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 600; margin-bottom: 8px; }
     .process-desc { font-size: 13px; color: var(--gray-5); line-height: 1.5; }
 
-    /* CTA */
-    .cta-section { padding: 100px 24px; text-align: center; position: relative; overflow: hidden; }
-    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(184,115,51,0.12) 0%, transparent 70%); }
-    .cta-title { font-size: clamp(32px, 5vw, 58px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 20px; position: relative; font-family: 'Montserrat', sans-serif; }
-    .cta-desc { font-size: 16px; color: var(--gray-5); max-width: 440px; margin: 0 auto 36px; position: relative; }
-    .cta-actions { display: flex; align-items: center; justify-content: center; gap: 14px; position: relative; }
+    /* LEAD FORM — reemplaza CTA */
+    .lead-section { padding: 100px 24px; position: relative; overflow: hidden; }
+    .lead-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 60% at 50% 50%, rgba(184,115,51,0.10) 0%, transparent 70%); }
+    .lead-inner { max-width: 1060px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; position: relative; }
+    .lead-copy { }
+    .lead-title { font-size: clamp(28px, 4vw, 46px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 16px; }
+    .lead-desc { font-size: 16px; color: var(--gray-5); line-height: 1.7; margin-bottom: 28px; }
+    .lead-perks { display: flex; flex-direction: column; gap: 12px; }
+    .lead-perk { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--gray-6); }
+    .lead-perk-icon { width: 28px; height: 28px; border-radius: 8px; background: rgba(184,115,51,0.12); border: 0.5px solid rgba(184,115,51,0.2); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+
+    /* Form */
+    .lead-form { background: var(--gray-1); border: 0.5px solid var(--gray-3); border-radius: 20px; padding: 36px; }
+    .lead-form-title { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .lead-form-sub { font-size: 13px; color: var(--gray-5); margin-bottom: 24px; }
+    .form-group { margin-bottom: 16px; }
+    .form-label { font-size: 12px; color: var(--gray-5); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; display: block; }
+    .form-input { width: 100%; padding: 12px 16px; background: var(--gray-2); border: 0.5px solid var(--gray-3); border-radius: 10px; color: var(--white); font-size: 14px; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s; }
+    .form-input:focus { border-color: var(--copper); }
+    .form-input::placeholder { color: var(--gray-4); }
+    .form-select { width: 100%; padding: 12px 16px; background: var(--gray-2); border: 0.5px solid var(--gray-3); border-radius: 10px; color: var(--white); font-size: 14px; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s; appearance: none; cursor: pointer; }
+    .form-select:focus { border-color: var(--copper); }
+    .form-select option { background: var(--gray-1); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-submit { width: 100%; padding: 14px; border-radius: 10px; background: var(--copper); border: none; color: #fff; font-size: 15px; font-weight: 500; font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.2s; margin-top: 8px; }
+    .form-submit:hover { background: var(--amber); transform: translateY(-1px); }
+    .form-disclaimer { font-size: 11px; color: var(--gray-4); text-align: center; margin-top: 12px; line-height: 1.5; }
+    .form-success { display: none; text-align: center; padding: 24px 0; }
+    .form-success-icon { font-size: 40px; margin-bottom: 12px; }
+    .form-success-title { font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .form-success-desc { font-size: 14px; color: var(--gray-5); }
 
     /* FOOTER */
     footer { border-top: 0.5px solid var(--gray-3); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; }
-    .footer-logo { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: var(--gray-5); }
-    .footer-logo span { color: var(--amber); }
     .footer-text { font-size: 12px; color: var(--gray-4); }
     .footer-links { display: flex; gap: 24px; }
     .footer-links a { font-size: 12px; color: var(--gray-4); text-decoration: none; transition: color 0.2s; }
@@ -201,37 +198,32 @@
     .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-    /* Cancelación nota */
-    .cancelacion-note { padding: 16px 20px; background: rgba(255,255,255,0.03); border: 0.5px solid var(--gray-3); border-radius: 10px; display: flex; align-items: flex-start; gap: 10px; }
-
     @media (max-width: 900px) {
       nav { padding: 16px 20px; }
       .nav-links { display: none; }
       .apps-grid { grid-template-columns: 1fr; }
-      .app-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
-      .app-card.vruta-card { grid-column: span 1; grid-template-columns: 1fr; }
+      .app-card.featured, .app-card.vruta-card { grid-column: span 1; grid-template-columns: 1fr; }
       .pricing-apps-grid { grid-template-columns: 1fr; }
-      .pricing-app-card.soon { grid-column: span 1; grid-template-columns: 1fr; }
       .addons-grid { grid-template-columns: 1fr; }
       .process-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
       .process-grid::before { display: none; }
       footer { flex-direction: column; gap: 16px; text-align: center; }
       .pricing-controls { flex-direction: column; align-items: flex-start; }
       .plazo-tabs { flex-wrap: wrap; }
+      .lead-inner { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="https://etraziapp.com" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+  <a href="https://etraziapp.com" style="display:flex;align-items:center;gap:10px;text-decoration:none">
     <svg width="34" height="34" viewBox="0 0 44 44" fill="none">
       <path d="M16 22C16 15.37 21.37 10 28 10C34.63 10 40 15.37 40 22C40 28.63 34.63 34 28 34" stroke="#1B2B4B" stroke-width="5" fill="none" stroke-linecap="round"/>
       <path d="M28 22C28 28.63 22.63 34 16 34C9.37 34 4 28.63 4 22C4 15.37 9.37 10 16 10" stroke="url(#nlg)" stroke-width="5" fill="none" stroke-linecap="round"/>
       <rect x="17.5" y="17.5" width="9" height="9" rx="1.5" fill="#D97706" transform="rotate(45 22 22)"/>
-      <defs><linearGradient id="nlg" x1="28" y1="10" x2="4" y2="34" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="#B87333"/><stop offset="100%" stop-color="#D97706"/>
-      </linearGradient></defs>
+      <defs><linearGradient id="nlg" x1="28" y1="10" x2="4" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#B87333"/><stop offset="100%" stop-color="#D97706"/></linearGradient></defs>
     </svg>
     <div style="display:flex;flex-direction:column;line-height:1.1">
       <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;letter-spacing:0.06em;color:#F8FAFC">ETRAZIA<span style="color:#D97706;font-weight:400">app</span></span>
@@ -246,7 +238,7 @@
   </ul>
   <div class="nav-cta">
     <a href="demo.html" class="btn-ghost">Ver demo</a>
-    <a href="contratacion.html" class="btn-primary">Contratar →</a>
+    <a href="#contacto" class="btn-primary">Contratar →</a>
   </div>
 </nav>
 
@@ -258,11 +250,11 @@
   <h1>Tu negocio,<br><span class="accent">digitalizado</span><span class="line2">sin complicaciones.</span></h1>
   <p class="hero-desc">EtraziApp es una suite de aplicaciones diseñadas para que pequeñas y medianas empresas operen, vendan y crezcan con herramientas de clase mundial.</p>
   <div class="hero-actions">
-    <a href="contratacion.html" class="btn-hero">Contratar ahora</a>
+    <a href="#contacto" class="btn-hero">Contratar ahora</a>
     <a href="demo.html" class="btn-hero-ghost">Ver demo</a>
   </div>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-num">3</div><div class="hero-stat-label">Apps disponibles</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">2</div><div class="hero-stat-label">Apps disponibles</div></div>
     <div class="hero-stat-divider"></div>
     <div class="hero-stat"><div class="hero-stat-num">S/ 150</div><div class="hero-stat-label">Desde por mes</div></div>
     <div class="hero-stat-divider"></div>
@@ -277,14 +269,18 @@
   <p class="section-desc fade-up">Cada app está diseñada para un propósito específico. Contrata solo lo que necesitas.</p>
   <div class="apps-grid">
 
-    <!-- VCONTROL — featured -->
-    <div class="app-card featured fade-up" style="--card-color: rgba(184,115,51,0.08);">
+    <!-- VCONTROL — span 2 con layout interno -->
+    <div class="app-card featured fade-up">
       <div>
         <div class="app-status"><div class="app-status-dot"></div> Disponible</div>
         <div class="app-icon" style="background:rgba(184,115,51,0.12);">📦</div>
-        <div class="app-name">V<span style="color:var(--amber)">control</span></div>
-        <p class="app-desc">Gestión comercial completa para tu negocio. Inventario, CRM, ventas, finanzas con reporte SUNAT y pagos QR — todo en un solo sistema personalizado para tu giro.</p>
-        <div class="app-tags"><span class="app-tag">Inventario</span><span class="app-tag">CRM</span><span class="app-tag">Ventas</span><span class="app-tag">Finanzas</span><span class="app-tag">Reporte SUNAT</span><span class="app-tag">Pagos QR</span></div>
+        <div class="app-name">V<span>control</span></div>
+        <p class="app-desc">Gestión comercial completa. Inventario, CRM, ventas, finanzas con reporte SUNAT y pagos QR — todo personalizado para tu giro.</p>
+        <div class="app-tags"><span class="app-tag">Inventario</span><span class="app-tag">CRM</span><span class="app-tag">Ventas</span><span class="app-tag">Finanzas</span><span class="app-tag">SUNAT</span><span class="app-tag">Pagos QR</span></div>
+        <div class="app-price-inline" style="margin-top:20px;">
+          <span class="app-price-from">Desde</span>
+          <span><span class="app-price-val">S/ 150</span><span class="app-price-period"> /mes</span></span>
+        </div>
       </div>
       <div style="background:var(--gray-2);border:0.5px solid var(--gray-3);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:10px;">
         <div style="font-size:12px;color:var(--gray-5);font-weight:500;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">Para negocios</div>
@@ -293,206 +289,138 @@
         <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Comprobantes PDF automáticos</div>
         <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Reporte listo para SUNAT (RER)</div>
         <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> QR de cobro Yape / Plin</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--amber);font-weight:500;"><span style="color:var(--green);">✓</span> Usuarios ilimitados incluidos</div>
       </div>
     </div>
 
-    <!-- VCONTENT BUSINESS -->
-    <div class="app-card fade-up" style="--card-color: rgba(239,159,39,0.08);">
-      <div class="app-status"><div class="app-status-dot"></div> Disponible</div>
+    <!-- VCONTENT BUSINESS — 1 col normal -->
+    <div class="app-card vcb-card fade-up">
+      <div class="app-status" style="background:rgba(148,163,184,0.08);color:var(--gray-5);border-color:rgba(148,163,184,0.2);">⏳ Próximamente</div>
       <div class="app-icon" style="background:rgba(239,159,39,0.12);">📱</div>
-      <div class="app-name">V<span style="color:var(--amber)">content</span> Business</div>
+      <div class="app-name">V<span>content</span> Business</div>
       <p class="app-desc">Gestiona Instagram y TikTok de tu empresa con IA. Conectado con Vcontrol para sugerencias inteligentes según tu inventario y temporada.</p>
-      <div class="app-tags"><span class="app-tag">Instagram</span><span class="app-tag">TikTok</span><span class="app-tag">IA</span><span class="app-tag">Negocio</span></div>
+      <div class="app-tags"><span class="app-tag">Instagram</span><span class="app-tag">TikTok</span><span class="app-tag">IA</span><span class="app-tag">Vcontrol sync</span></div>
+      <div class="app-price-inline" style="margin-top:auto;">
+        <span class="app-price-from">Precio por anunciar</span>
+        <a href="https://wa.me/51981527408?text=Hola, me interesa Vcontent Business" target="_blank" style="font-size:12px;color:var(--amber);text-decoration:none;">Avisar cuando esté →</a>
+      </div>
     </div>
 
-    <!-- VRUTA — nuevo, reemplaza Vfacturación -->
-    <div class="app-card vruta-card fade-up" style="--card-color: rgba(76,175,125,0.06);">
-      <div>
-        <div class="app-status"><div class="app-status-dot"></div> Disponible</div>
-        <div class="app-icon" style="background:rgba(76,175,125,0.12);">🚚</div>
-        <div class="app-name">V<span style="color:var(--amber)">ruta</span></div>
-        <p class="app-desc">Gestión de rutas y entregas para marcas DTC con flota propia. Optimiza tus despachos con algoritmo inteligente, seguimiento en tiempo real y acceso mobile para repartidores.</p>
-        <div class="app-tags"><span class="app-tag">Rutas</span><span class="app-tag">Entregas</span><span class="app-tag">Mapa</span><span class="app-tag">Flota</span><span class="app-tag">Excel</span><span class="app-tag">Mobile</span></div>
-      </div>
-      <div style="background:var(--gray-2);border:0.5px solid var(--gray-3);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:10px;">
-        <div style="font-size:12px;color:var(--gray-5);font-weight:500;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">Para e-commerce y DTC</div>
+    <!-- VRUTA — 1 col normal (misma anchura que Vcontent Business) -->
+    <div class="app-card vruta-card fade-up" style="grid-column:span 1;display:flex;flex-direction:column;border-color:rgba(76,175,125,0.18);">
+      <div class="app-status"><div class="app-status-dot"></div> Disponible</div>
+      <div class="app-icon" style="background:rgba(76,175,125,0.12);">🚚</div>
+      <div class="app-name">V<span>ruta</span></div>
+      <p class="app-desc">Gestión de rutas y entregas para marcas DTC con flota propia. Optimiza despachos con algoritmo inteligente y seguimiento en tiempo real.</p>
+      <div class="app-tags"><span class="app-tag">Rutas</span><span class="app-tag">Entregas</span><span class="app-tag">Mapa</span><span class="app-tag">Flota</span><span class="app-tag">Excel</span><span class="app-tag">Mobile</span></div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin:16px 0;">
         <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Optimización automática de ruta</div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Mapa visual en tiempo real</div>
         <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> App mobile para repartidores</div>
         <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Evidencia fotográfica de entrega</div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Historial y exportación Excel</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--amber);font-weight:500;"><span style="color:var(--green);">✓</span> Conductores ilimitados incluidos</div>
+      </div>
+      <div class="app-price-inline" style="margin-top:auto;">
+        <span class="app-price-from">Desde</span>
+        <span><span class="app-price-val">S/ 180</span><span class="app-price-period"> /mes</span></span>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- PRECIOS -->
+<!-- PRECIOS SIMPLIFICADOS -->
 <section class="pricing-section" id="precios">
   <div class="pricing-inner">
-    <p class="section-label fade-up">Planes y precios</p>
-    <h2 class="section-title fade-up">Paga solo por lo que usas.</h2>
-    <p class="section-desc fade-up">Cada app se contrata de forma independiente. Usuarios ilimitados incluidos en todas. Sin costos ocultos.</p>
+    <p class="section-label fade-up">Inversión</p>
+    <h2 class="section-title fade-up">Transparente desde el primer día.</h2>
+    <p class="section-desc fade-up" style="margin-bottom:32px;">Inversión inicial única + membresía mensual. Descuentos por plazo de contrato.</p>
 
     <div class="pricing-controls fade-up">
       <div class="currency-switch">
         <span class="currency-label active" id="lbl-sol">Soles (S/)</span>
-        <button class="switch-track" id="currency-toggle" onclick="toggleCurrency()">
-          <div class="switch-knob"></div>
-        </button>
+        <button class="switch-track" id="currency-toggle" onclick="toggleCurrency()"><div class="switch-knob"></div></button>
         <span class="currency-label" id="lbl-usd">Dólares (USD)</span>
       </div>
       <div class="plazo-tabs">
-        <button class="plazo-tab active" onclick="setPlazo(0, this)">Mensual</button>
-        <button class="plazo-tab" onclick="setPlazo(1, this)">6 meses <span class="descuento-badge">-5%</span></button>
-        <button class="plazo-tab" onclick="setPlazo(2, this)">12 meses <span class="descuento-badge">-10%</span></button>
-        <button class="plazo-tab" onclick="setPlazo(3, this)">18 meses <span class="descuento-badge">-15%</span></button>
-        <button class="plazo-tab" onclick="setPlazo(4, this)">24 meses <span class="descuento-badge">-20%</span></button>
+        <button class="plazo-tab active" onclick="setPlazo(0,this)">Mensual</button>
+        <button class="plazo-tab" onclick="setPlazo(1,this)">6 meses <span class="descuento-badge">-5%</span></button>
+        <button class="plazo-tab" onclick="setPlazo(2,this)">12 meses <span class="descuento-badge">-10%</span></button>
+        <button class="plazo-tab" onclick="setPlazo(3,this)">18 meses <span class="descuento-badge">-15%</span></button>
+        <button class="plazo-tab" onclick="setPlazo(4,this)">24 meses <span class="descuento-badge">-20%</span></button>
       </div>
     </div>
 
-    <div class="pricing-apps-grid">
+    <table class="pricing-table fade-up">
+      <thead>
+        <tr>
+          <th>App</th>
+          <th>Inversión inicial</th>
+          <th>Membresía / mes</th>
+          <th>Incluye</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="pt-app-name">📦 Vcontrol</div>
+            <div class="pt-app-sub">Gestión comercial completa</div>
+          </td>
+          <td><span class="pt-setup" id="setup-vc">S/ 500</span></td>
+          <td>
+            <span class="pt-price" id="mem-vc">S/ 150</span>
+            <span class="pt-price-orig" id="mem-vc-orig" style="display:none;"></span>
+          </td>
+          <td><span class="pt-incl">Branding · Customización · 5h capacitación · Dominio · Usuarios ilimitados</span></td>
+          <td><span class="pt-badge-avail">Disponible</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="pt-app-name">🚚 Vruta</div>
+            <div class="pt-app-sub">Rutas y entregas DTC</div>
+          </td>
+          <td><span class="pt-setup" id="setup-vr">S/ 600</span></td>
+          <td>
+            <span class="pt-price" id="mem-vr">S/ 180</span>
+            <span class="pt-price-orig" id="mem-vr-orig" style="display:none;"></span>
+          </td>
+          <td><span class="pt-incl">Branding · Customización · 5h capacitación · Dominio · Conductores ilimitados</span></td>
+          <td><span class="pt-badge-avail">Disponible</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="pt-app-name">📱 Vcontent Business</div>
+            <div class="pt-app-sub">Instagram y TikTok con IA</div>
+          </td>
+          <td><span class="pt-setup">—</span></td>
+          <td><span class="pt-price" style="font-size:14px;color:var(--gray-5);">Por anunciar</span></td>
+          <td><span class="pt-incl">Branding · Customización · 5h capacitación · Dominio</span></td>
+          <td><span class="pt-badge-soon">Próximamente</span></td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- VCONTROL -->
-      <div class="pricing-app-card available fade-up">
-        <div class="pac-status live"><div class="pac-status-dot"></div> Disponible</div>
-        <div class="pac-icon">📦</div>
-        <div class="pac-name">V<span>control</span></div>
-        <p class="pac-desc">Gestión comercial completa. Inventario, CRM, ventas, finanzas y pagos QR — personalizado para tu giro de negocio.</p>
-
-        <div class="setup-block">
-          <div class="setup-header">
-            <span class="setup-label">Inversión inicial · Pago único</span>
-            <span class="setup-price" id="setup-vc">S/ 500</span>
-          </div>
-          <div class="setup-includes">
-            <div class="setup-item"><span class="setup-item-icon">🎨</span> App brandeada con tu marca y colores</div>
-            <div class="setup-item"><span class="setup-item-icon">⚙️</span> Customizada al giro de tu negocio</div>
-            <div class="setup-item"><span class="setup-item-icon">🎓</span> 5 horas de capacitación incluidas</div>
-            <div class="setup-item"><span class="setup-item-icon">🌐</span> Dominio tuempresa.etraziapp.com</div>
-          </div>
-        </div>
-
-        <div class="mem-block">
-          <div class="mem-header">
-            <span class="mem-label">Membresía mensual</span>
-            <div class="mem-price-wrap">
-              <span class="mem-price" id="mem-vc">S/ 150</span>
-              <span class="mem-price-orig" id="mem-vc-orig" style="display:none;"></span>
-            </div>
-          </div>
-          <div class="mem-period">/mes · soporte técnico + actualizaciones</div>
-        </div>
-
-        <div class="pac-divider"></div>
-        <div class="pac-features">
-          <div class="pac-feat"><span class="pac-check">✓</span> Inventario con entradas y ajustes</div>
-          <div class="pac-feat"><span class="pac-check">✓</span> CRM con segmentación automática</div>
-          <div class="pac-feat"><span class="pac-check">✓</span> Ventas con comprobante PDF</div>
-          <div class="pac-feat"><span class="pac-check">✓</span> Finanzas y reporte SUNAT (RER)</div>
-          <div class="pac-feat"><span class="pac-check">✓</span> Pagos QR Yape / Plin</div>
-          <div class="pac-feat"><span class="pac-check">✓</span> <span class="pac-feat-highlight">Usuarios ilimitados incluidos</span></div>
-        </div>
-        <button class="pac-btn primary" onclick="window.location='contratacion.html'">Contratar Vcontrol →</button>
-      </div>
-
-      <!-- VRUTA -->
-      <div class="pricing-app-card available fade-up">
-        <div class="pac-status live"><div class="pac-status-dot"></div> Disponible</div>
-        <div class="pac-icon">🚚</div>
-        <div class="pac-name">V<span>ruta</span></div>
-        <p class="pac-desc">Gestión de rutas y entregas para marcas DTC con flota propia. Optimiza despachos con algoritmo inteligente y seguimiento en tiempo real.</p>
-
-        <div class="setup-block">
-          <div class="setup-header">
-            <span class="setup-label">Inversión inicial · Pago único</span>
-            <span class="setup-price" id="setup-vr">S/ 600</span>
-          </div>
-          <div class="setup-includes">
-            <div class="setup-item"><span class="setup-item-icon">🎨</span> App brandeada con tu marca y colores</div>
-            <div class="setup-item"><span class="setup-item-icon">⚙️</span> Configurada con tu almacén y flota real</div>
-            <div class="setup-item"><span class="setup-item-icon">🎓</span> 5 horas de capacitación incluidas</div>
-            <div class="setup-item"><span class="setup-item-icon">🌐</span> Dominio tuempresa.etraziapp.com</div>
-          </div>
-        </div>
-
-        <div class="mem-block">
-          <div class="mem-header">
-            <span class="mem-label">Membresía mensual</span>
-            <div class="mem-price-wrap">
-              <span class="mem-price" id="mem-vr">S/ 180</span>
-              <span class="mem-price-orig" id="mem-vr-orig" style="display:none;"></span>
-            </div>
-          </div>
-          <div class="mem-period">/mes · soporte técnico + actualizaciones</div>
-        </div>
-
-        <div class="pac-divider"></div>
-        <div class="pac-features">
-          <div class="pac-feat"><span class="pac-check">✓</span> Optimización automática de ruta</div>
-          <div class="pac-feat"><span class="pac-check">✓</span> Mapa visual en tiempo real</div>
-          <div class="pac-feat"><span class="pac-check">✓</span> App mobile para repartidores</div>
-          <div class="pac-feat"><span class="pac-check">✓</span> Evidencia fotográfica de entrega</div>
-          <div class="pac-feat"><span class="pac-check">✓</span> Historial y exportación Excel</div>
-          <div class="pac-feat"><span class="pac-check">✓</span> <span class="pac-feat-highlight">Conductores ilimitados incluidos</span></div>
-        </div>
-        <button class="pac-btn primary" onclick="window.location='contratacion.html'">Contratar Vruta →</button>
-      </div>
-
-      <!-- VCONTENT BUSINESS — PRÓXIMAMENTE -->
-      <div class="pricing-app-card soon fade-up">
-        <div>
-          <div class="pac-status coming">⏳ Próximamente</div>
-          <div class="pac-icon">📱</div>
-          <div class="pac-name">V<span>content</span> Business</div>
-          <p class="pac-desc">Gestiona Instagram y TikTok de tu empresa con inteligencia artificial. Conectado con Vcontrol para sugerencias basadas en tu inventario y temporada.</p>
-          <div class="app-tags" style="margin-top:4px;">
-            <span class="app-tag">Instagram</span>
-            <span class="app-tag">TikTok</span>
-            <span class="app-tag">IA</span>
-            <span class="app-tag">Vcontrol sync</span>
-          </div>
-        </div>
-        <div class="soon-waitlist">
-          <p>¿Te interesa esta app? Déjanos tu contacto y te avisamos cuando esté disponible.</p>
-          <button class="pac-btn" onclick="window.open('https://wa.me/51981527408?text=Hola, me interesa Vcontent Business', '_blank')">Unirme a la lista de espera →</button>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ADD-ONS -->
     <div class="addons-section fade-up">
       <div class="addons-title">Servicios adicionales</div>
       <div class="addons-desc">Complementa tu app con soporte extendido o funcionalidades a medida.</div>
       <div class="addons-grid">
         <div class="addon-card">
           <div class="addon-icon">🎓</div>
-          <div class="addon-info">
-            <div class="addon-name">Capacitación extra</div>
-            <div class="addon-desc">Sesiones adicionales para tu equipo</div>
-          </div>
+          <div class="addon-info"><div class="addon-name">Capacitación extra</div><div class="addon-desc">Sesiones adicionales para tu equipo</div></div>
           <div class="addon-price">S/ 80 / hora</div>
         </div>
         <div class="addon-card">
           <div class="addon-icon">⚙️</div>
-          <div class="addon-info">
-            <div class="addon-name">Nueva funcionalidad</div>
-            <div class="addon-desc">Desarrollo a medida por requerimiento</div>
-          </div>
+          <div class="addon-info"><div class="addon-name">Nueva funcionalidad</div><div class="addon-desc">Desarrollo a medida por requerimiento</div></div>
           <div class="addon-price">Cotización</div>
         </div>
       </div>
     </div>
 
-    <!-- NOTA CANCELACIÓN -->
-    <div class="cancelacion-note">
-      <span style="color:var(--gray-4);font-size:16px;flex-shrink:0;">*</span>
-      <p style="font-size:12px;color:var(--gray-5);line-height:1.6;">
-        <strong style="color:var(--gray-6);">Política de cancelación anticipada:</strong>
-        Si decides cancelar antes de culminar el plazo contratado, se aplicará una penalización equivalente al <strong style="color:var(--gray-6);">20% del monto total restante</strong> del contrato.
-        Los contratos mensuales no tienen penalización de cancelación.
-      </p>
+    <div class="pricing-note fade-up">
+      <strong style="color:var(--gray-6);">Política de cancelación anticipada:</strong>
+      Si cancelas antes de culminar el plazo contratado, se aplica una penalización del <strong style="color:var(--gray-6);">20% del monto total restante</strong>.
+      Contratos mensuales sin penalización.
     </div>
   </div>
 </section>
@@ -506,7 +434,7 @@
     <div class="process-step fade-up">
       <div class="process-num">1</div>
       <div class="process-title">Elige tu app</div>
-      <p class="process-desc">Selecciona la app que necesitas y completa el formulario en minutos.</p>
+      <p class="process-desc">Selecciona la app que necesitas y completa el formulario de contacto.</p>
     </div>
     <div class="process-step fade-up">
       <div class="process-num">2</div>
@@ -526,25 +454,78 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section" id="contratar">
-  <h2 class="cta-title fade-up">¿Listo para escalar<br>tu negocio?</h2>
-  <p class="cta-desc fade-up">Únete a los negocios que ya operan con EtraziApp. Inversión inicial desde S/ 500 · Membresía desde S/ 150/mes.</p>
-  <div class="cta-actions fade-up">
-    <a href="contratacion.html" class="btn-hero">Contratar ahora →</a>
-    <a href="demo.html" class="btn-hero-ghost">Ver demo</a>
+<!-- LEAD FORM -->
+<section class="lead-section" id="contacto">
+  <div class="lead-inner">
+    <div class="lead-copy fade-up">
+      <p class="section-label">Contáctanos</p>
+      <h2 class="lead-title">¿Listo para escalar<br>tu negocio?</h2>
+      <p class="lead-desc">Un asesor de Etrazia te contactará en menos de 24 horas para resolver tus dudas y guiarte en el proceso de contratación.</p>
+      <div class="lead-perks">
+        <div class="lead-perk"><div class="lead-perk-icon">⚡</div> Respuesta en menos de 24 horas</div>
+        <div class="lead-perk"><div class="lead-perk-icon">🎨</div> Demo personalizada para tu negocio</div>
+        <div class="lead-perk"><div class="lead-perk-icon">🎓</div> 5 horas de capacitación incluidas</div>
+        <div class="lead-perk"><div class="lead-perk-icon">🔒</div> Sin compromisos hasta que confirmes</div>
+      </div>
+    </div>
+
+    <div class="lead-form fade-up">
+      <div id="form-body">
+        <div class="lead-form-title">Solicita información</div>
+        <div class="lead-form-sub">Completa el formulario y te contactamos a la brevedad.</div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Nombre</label>
+            <input class="form-input" type="text" id="f-nombre" placeholder="Tu nombre" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Empresa</label>
+            <input class="form-input" type="text" id="f-empresa" placeholder="Nombre de tu negocio" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">WhatsApp</label>
+          <input class="form-input" type="tel" id="f-wsp" placeholder="+51 999 999 999" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">App de interés</label>
+          <select class="form-select" id="f-app">
+            <option value="">Selecciona una app...</option>
+            <option value="Vcontrol">📦 Vcontrol — Gestión comercial</option>
+            <option value="Vruta">🚚 Vruta — Rutas y entregas</option>
+            <option value="Ambas">📦🚚 Ambas apps</option>
+            <option value="Vcontent Business">📱 Vcontent Business (próximamente)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">¿Cuál es tu giro de negocio?</label>
+          <input class="form-input" type="text" id="f-giro" placeholder="Ej: Joyería, ropa, delivery de comida..." />
+        </div>
+
+        <button class="form-submit" onclick="submitLead()">Solicitar información →</button>
+        <p class="form-disclaimer">Al enviar, un asesor de Etrazia te contactará por WhatsApp. Sin spam.</p>
+      </div>
+
+      <div class="form-success" id="form-success">
+        <div class="form-success-icon">✅</div>
+        <div class="form-success-title">¡Recibimos tu solicitud!</div>
+        <p class="form-success-desc">Un asesor de Etrazia te contactará por WhatsApp en menos de 24 horas.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-logo" style="display:flex;align-items:center;gap:8px">
+  <div style="display:flex;align-items:center;gap:8px">
     <svg width="20" height="20" viewBox="0 0 44 44" fill="none">
       <path d="M16 22C16 15.37 21.37 10 28 10C34.63 10 40 15.37 40 22C40 28.63 34.63 34 28 34" stroke="#1B2B4B" stroke-width="5" fill="none" stroke-linecap="round"/>
       <path d="M28 22C28 28.63 22.63 34 16 34C9.37 34 4 28.63 4 22C4 15.37 9.37 10 16 10" stroke="url(#flg)" stroke-width="5" fill="none" stroke-linecap="round"/>
       <rect x="17.5" y="17.5" width="9" height="9" rx="1.5" fill="#D97706" transform="rotate(45 22 22)"/>
-      <defs><linearGradient id="flg" x1="28" y1="10" x2="4" y2="34" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="#B87333"/><stop offset="100%" stop-color="#D97706"/>
-      </linearGradient></defs>
+      <defs><linearGradient id="flg" x1="28" y1="10" x2="4" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#B87333"/><stop offset="100%" stop-color="#D97706"/></linearGradient></defs>
     </svg>
     <div style="display:flex;flex-direction:column;line-height:1.2">
       <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;letter-spacing:0.06em;color:#94A3B8">ETRAZIA<span style="color:#D97706;font-weight:400">app</span></span>
@@ -555,65 +536,72 @@
   <div class="footer-links">
     <a href="#">Términos</a>
     <a href="#">Privacidad</a>
-    <a href="#">Contacto</a>
+    <a href="#contacto">Contacto</a>
   </div>
 </footer>
 
 <script>
+/* ── PRICING ── */
 const precios = {
   sol: { vc: { setup: 500, mem: 150 }, vr: { setup: 600, mem: 180 } },
   usd: { vc: { setup: 150, mem: 45 },  vr: { setup: 180, mem: 55 } }
 };
 const descuentos = [0, 0.05, 0.10, 0.15, 0.20];
-let moneda = 'sol';
-let plazoIdx = 0;
+let moneda = 'sol', plazoIdx = 0;
 
 function toggleCurrency() {
   moneda = moneda === 'sol' ? 'usd' : 'sol';
-  const track = document.getElementById('currency-toggle');
-  track.classList.toggle('usd', moneda === 'usd');
+  document.getElementById('currency-toggle').classList.toggle('usd', moneda === 'usd');
   document.getElementById('lbl-sol').classList.toggle('active', moneda === 'sol');
   document.getElementById('lbl-usd').classList.toggle('active', moneda === 'usd');
   updatePrices();
 }
-
 function setPlazo(idx, btn) {
   plazoIdx = idx;
   document.querySelectorAll('.plazo-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
   updatePrices();
 }
-
 function updatePrices() {
   const sym = moneda === 'sol' ? 'S/ ' : 'USD ';
   const desc = descuentos[plazoIdx];
-  ['vc', 'vr'].forEach(k => {
+  ['vc','vr'].forEach(k => {
     const p = precios[moneda][k];
-    const memFinal = Math.round(p.mem * (1 - desc));
+    const fin = Math.round(p.mem * (1 - desc));
     document.getElementById('setup-' + k).textContent = sym + p.setup;
-    document.getElementById('mem-' + k).textContent = sym + memFinal;
-    const origEl = document.getElementById('mem-' + k + '-orig');
-    if (desc > 0) {
-      origEl.textContent = sym + p.mem;
-      origEl.style.display = 'inline';
-    } else {
-      origEl.style.display = 'none';
-    }
+    document.getElementById('mem-' + k).textContent = sym + fin;
+    const orig = document.getElementById('mem-' + k + '-orig');
+    if (desc > 0) { orig.textContent = sym + p.mem; orig.style.display = 'block'; }
+    else { orig.style.display = 'none'; }
   });
 }
 
-// Scroll animations
+/* ── LEAD FORM ── */
+function submitLead() {
+  const nombre  = document.getElementById('f-nombre').value.trim();
+  const empresa = document.getElementById('f-empresa').value.trim();
+  const wsp     = document.getElementById('f-wsp').value.trim();
+  const app     = document.getElementById('f-app').value;
+  const giro    = document.getElementById('f-giro').value.trim();
+
+  if (!nombre || !wsp || !app) {
+    alert('Por favor completa al menos nombre, WhatsApp y app de interés.');
+    return;
+  }
+
+  const msg = `Hola, soy ${nombre} de ${empresa || 'mi negocio'}. Me interesa ${app}. Giro: ${giro || 'no especificado'}. Mi WhatsApp: ${wsp}`;
+  window.open('https://wa.me/51981527408?text=' + encodeURIComponent(msg), '_blank');
+
+  document.getElementById('form-body').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+
+/* ── SCROLL ANIMATIONS ── */
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-// Navbar scroll
 window.addEventListener('scroll', () => {
   document.querySelector('nav').style.borderBottomColor =
     window.scrollY > 50 ? 'rgba(184,115,51,0.1)' : 'rgba(184,115,51,0.08)';
