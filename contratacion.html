@@ -437,6 +437,26 @@ function ns(){
   if(step===4){
     var s=document.getElementById('v-sub').value||'tunegocio';
     document.getElementById('v-url').textContent=s+'.etraziapp.com';
+    // Notificar a Etrazia por WhatsApp
+    var neg  = document.getElementById('v-neg')?.value  || '—';
+    var nom  = document.getElementById('v-nom')?.value  || '—';
+    var cor  = document.getElementById('v-cor')?.value  || '—';
+    var rpla = document.getElementById('r-pla')?.textContent || '—';
+    var rini = document.getElementById('r-ini')?.textContent || '—';
+    var rmem = document.getElementById('r-mem')?.textContent || '—';
+    var msg =
+      '🎉 *Nueva contratación EtraziApp*\n\n' +
+      '📋 *Negocio:* ' + neg + '\n' +
+      '👤 *Contacto:* ' + nom + '\n' +
+      '📧 *Correo:* ' + cor + '\n' +
+      '🌐 *Subdominio:* ' + s + '.etraziapp.com\n' +
+      '📦 *Plan:* ' + rpla + '\n' +
+      '💰 *Setup:* ' + rini + '\n' +
+      '📅 *Membresía:* ' + rmem + '\n\n' +
+      'Revisar y activar entorno.';
+    setTimeout(function(){
+      window.open('https://wa.me/51922339690?text='+encodeURIComponent(msg),'_blank');
+    },1500);
   }
 }
 function ps(){
