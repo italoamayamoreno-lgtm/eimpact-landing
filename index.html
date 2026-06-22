@@ -65,94 +65,74 @@
     .section-title { font-size: clamp(28px, 4vw, 44px); font-weight: 700; letter-spacing: -1px; line-height: 1.15; margin-bottom: 16px; }
     .section-desc { font-size: 16px; color: var(--gray-5); max-width: 480px; line-height: 1.7; margin-bottom: 56px; }
 
-    /* APPS GRID — todas las cards igual de anchas en grilla 2 col */
+    /* APPS GRID */
     .apps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 
+    /* Cards base */
     .app-card { background: var(--gray-1); border: 0.5px solid var(--gray-3); border-radius: 16px; padding: 32px; transition: all 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
     .app-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg, var(--card-color, rgba(108,99,255,0.05)) 0%, transparent 60%); opacity:0; transition:opacity 0.3s; }
     .app-card:hover { border-color: var(--gray-4); transform: translateY(-3px); }
     .app-card:hover::before { opacity: 1; }
 
-    /* Vcontrol ocupa las 2 columnas con layout interno 2 col */
-    .app-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; --card-color: rgba(184,115,51,0.08); }
-
-    /* Vruta también ocupa 2 columnas con layout interno 2 col */
-    .app-card.vruta-card { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; --card-color: rgba(76,175,125,0.06); border-color: rgba(76,175,125,0.18); }
+    /* Vcontrol — span 2 layout interno 2 col */
+    .app-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; --card-color: rgba(184,115,51,0.08); border-color: rgba(184,115,51,0.25); }
 
     .app-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 18px; }
-    .app-name { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.3px; }
+    .app-name { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.3px; }
     .app-name span { color: var(--amber); }
-    .app-desc { font-size: 14px; color: var(--gray-5); line-height: 1.6; margin-bottom: 16px; }
-    .app-tags { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 20px; }
-    .app-tag { font-size: 11px; padding: 3px 10px; border-radius: 99px; background: var(--gray-2); color: var(--gray-5); border: 0.5px solid var(--gray-3); }
-    .app-status { font-size: 10px; padding: 3px 10px; border-radius: 99px; background: rgba(76,175,125,0.1); color: var(--green); border: 0.5px solid rgba(76,175,125,0.25); display: inline-flex; align-items: center; gap: 5px; margin-bottom: 16px; }
-    .app-status-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); }
+    .app-tagline { font-size: 14px; color: var(--gray-5); line-height: 1.65; margin-bottom: 20px; }
 
-    /* Precio inline en card de app */
-    .app-price-inline { margin-top: auto; padding-top: 16px; border-top: 0.5px solid var(--gray-3); display: flex; align-items: center; justify-content: space-between; }
-    .app-price-from { font-size: 11px; color: var(--gray-5); }
-    .app-price-val { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: var(--amber); }
-    .app-price-period { font-size: 11px; color: var(--gray-5); font-weight: 300; }
+    /* Beneficios */
+    .benefit-list { display: flex; flex-direction: column; gap: 12px; }
+    .benefit-item { display: flex; align-items: flex-start; gap: 10px; }
+    .benefit-check { color: var(--amber); font-size: 15px; margin-top: 1px; flex-shrink: 0; line-height: 1.4; }
+    .benefit-text { font-size: 13px; color: var(--gray-6); line-height: 1.55; }
+    .benefit-text strong { color: var(--white); font-weight: 500; }
 
-    /* PRICING SIMPLIFICADA */
-    .pricing-section { padding: 80px 24px; background: var(--gray-1); border-top: 0.5px solid var(--gray-3); border-bottom: 0.5px solid var(--gray-3); }
-    .pricing-inner { max-width: 1060px; margin: 0 auto; }
-    .pricing-controls { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
-    .currency-switch { display: flex; align-items: center; gap: 10px; }
-    .currency-label { font-size: 13px; color: var(--gray-5); }
-    .currency-label.active { color: var(--white); font-weight: 500; }
-    .switch-track { width: 44px; height: 24px; border-radius: 99px; background: var(--copper); cursor: pointer; position: relative; border: none; }
-    .switch-knob { position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform 0.2s; }
-    .switch-track.usd .switch-knob { transform: translateX(20px); }
-    .plazo-tabs { display: flex; gap: 4px; background: var(--gray-2); border: 0.5px solid var(--gray-3); border-radius: 10px; padding: 4px; }
-    .plazo-tab { padding: 7px 16px; border-radius: 7px; font-size: 12px; color: var(--gray-5); cursor: pointer; border: none; background: transparent; font-family: 'Inter', sans-serif; transition: all 0.15s; white-space: nowrap; }
-    .plazo-tab.active { background: var(--copper); color: #fff; font-weight: 600; }
-    .descuento-badge { font-size: 10px; padding: 2px 8px; border-radius: 99px; background: rgba(76,175,125,0.12); color: var(--green); border: 0.5px solid rgba(76,175,125,0.2); margin-left: 4px; }
+    /* Preview box inside featured card */
+    .app-preview { background: var(--gray-2); border: 0.5px solid var(--gray-3); border-radius: 12px; padding: 20px; }
+    .preview-label { font-size: 10px; color: var(--gray-4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+    .preview-row { background: var(--gray-3); border-radius: 8px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .preview-row:last-of-type { margin-bottom: 0; }
+    .preview-name { font-size: 12px; color: var(--gray-6); }
+    .preview-sub { font-size: 10px; color: var(--gray-4); margin-top: 2px; }
+    .status-badge { font-size: 10px; padding: 3px 9px; border-radius: 99px; font-weight: 500; }
+    .status-green { background: rgba(76,175,125,0.12); color: var(--green); border: 0.5px solid rgba(76,175,125,0.2); }
+    .status-amber { background: rgba(217,119,6,0.12); color: var(--amber); border: 0.5px solid rgba(217,119,6,0.2); }
+    .status-gray { background: rgba(148,163,184,0.08); color: var(--gray-5); border: 0.5px solid rgba(148,163,184,0.15); }
+    .preview-footer { margin-top: 12px; padding-top: 12px; border-top: 0.5px solid var(--gray-3); display: flex; justify-content: space-between; font-size: 11px; }
 
-    /* Tabla comparativa simplificada */
-    .pricing-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
-    .pricing-table th { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--gray-5); text-transform: uppercase; letter-spacing: 0.8px; padding: 12px 20px; text-align: left; border-bottom: 0.5px solid var(--gray-3); }
-    .pricing-table th:not(:first-child) { text-align: center; }
-    .pricing-table td { padding: 16px 20px; border-bottom: 0.5px solid var(--gray-3); font-size: 14px; color: var(--gray-6); vertical-align: middle; }
-    .pricing-table td:not(:first-child) { text-align: center; }
-    .pricing-table tr:last-child td { border-bottom: none; }
-    .pricing-table tr:hover td { background: rgba(255,255,255,0.02); }
-    .pt-app-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; color: var(--white); }
-    .pt-app-sub { font-size: 12px; color: var(--gray-5); margin-top: 2px; }
-    .pt-price { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; color: var(--white); }
-    .pt-price-orig { font-size: 12px; color: var(--gray-4); text-decoration: line-through; display: block; margin-top: 2px; }
-    .pt-setup { font-size: 14px; color: var(--gray-6); }
-    .pt-badge-avail { font-size: 10px; padding: 3px 10px; border-radius: 99px; background: rgba(76,175,125,0.1); color: var(--green); border: 0.5px solid rgba(76,175,125,0.25); display: inline-block; }
-    .pt-badge-soon { font-size: 10px; padding: 3px 10px; border-radius: 99px; background: rgba(148,163,184,0.08); color: var(--gray-5); border: 0.5px solid rgba(148,163,184,0.2); display: inline-block; }
-    .pt-incl { font-size: 12px; color: var(--gray-5); }
+    /* Loyalty preview */
+    .loyalty-client { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .loyalty-avatar { width: 32px; height: 32px; border-radius: 50%; background: rgba(184,115,51,0.15); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: var(--amber); flex-shrink: 0; }
+    .pts-bar-wrap { background: var(--gray-3); border-radius: 99px; height: 5px; flex: 1; }
+    .pts-bar { height: 5px; border-radius: 99px; background: var(--copper); }
+    .pts-meta { display: flex; justify-content: space-between; margin-bottom: 4px; }
+    .pts-name { font-size: 12px; color: var(--gray-6); }
+    .pts-val { font-size: 11px; color: var(--amber); }
+    .pts-hint { font-size: 10px; color: var(--gray-4); margin-top: 3px; }
 
-    .pricing-note { padding: 16px 20px; background: rgba(255,255,255,0.02); border: 0.5px solid var(--gray-3); border-radius: 10px; font-size: 12px; color: var(--gray-5); line-height: 1.6; }
+    /* Vruta preview */
+    .ruta-row { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--gray-5); padding: 6px 0; border-bottom: 0.5px solid rgba(148,163,184,0.08); }
+    .ruta-row:last-child { border-bottom: none; }
 
-    /* Add-ons */
-    .addons-section { background: var(--gray-2); border: 0.5px solid var(--gray-3); border-radius: 16px; padding: 24px 28px; margin-bottom: 24px; }
-    .addons-title { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-    .addons-desc { font-size: 13px; color: var(--gray-5); margin-bottom: 16px; }
-    .addons-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .addon-card { background: var(--gray-1); border: 0.5px solid var(--gray-3); border-radius: 10px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
-    .addon-icon { font-size: 20px; flex-shrink: 0; }
-    .addon-info { flex: 1; }
-    .addon-name { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 2px; }
-    .addon-desc { font-size: 11px; color: var(--gray-5); }
-    .addon-price { font-size: 13px; font-weight: 500; color: var(--amber); white-space: nowrap; }
+    .card-divider { height: 0.5px; background: var(--gray-3); margin: 18px 0; }
 
     /* PROCESO */
-    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
-    .process-grid::before { content:''; position:absolute; top:28px; left:14%; right:14%; height:0.5px; background:linear-gradient(90deg,transparent,var(--gray-3),var(--gray-3),transparent); }
-    .process-step { padding: 0 16px; text-align: center; }
-    .process-num { width: 56px; height: 56px; border-radius: 50%; background: var(--gray-2); border: 0.5px solid var(--gray-3); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 700; color: var(--amber); margin: 0 auto 20px; }
-    .process-title { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 600; margin-bottom: 8px; }
-    .process-desc { font-size: 13px; color: var(--gray-5); line-height: 1.5; }
+    .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .process-step { background: var(--gray-1); border: 0.5px solid var(--gray-3); border-radius: 14px; padding: 24px; display: flex; gap: 16px; align-items: flex-start; transition: border-color 0.3s; }
+    .process-step:hover { border-color: var(--gray-4); }
+    .process-step.highlight { border-color: rgba(184,115,51,0.3); }
+    .process-num { width: 36px; height: 36px; border-radius: 50%; border: 0.5px solid rgba(184,115,51,0.35); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: var(--amber); flex-shrink: 0; }
+    .process-step.highlight .process-num { background: rgba(184,115,51,0.1); }
+    .process-title { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .process-desc { font-size: 13px; color: var(--gray-5); line-height: 1.6; }
+    .process-note { margin-top: 14px; background: rgba(184,115,51,0.06); border: 0.5px solid rgba(184,115,51,0.2); border-radius: 10px; padding: 14px 18px; text-align: center; font-size: 13px; color: var(--amber); }
 
-    /* LEAD FORM — reemplaza CTA */
+    /* LEAD FORM */
     .lead-section { padding: 100px 24px; position: relative; overflow: hidden; }
     .lead-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 60% at 50% 50%, rgba(184,115,51,0.10) 0%, transparent 70%); }
     .lead-inner { max-width: 1060px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; position: relative; }
-    .lead-copy { }
     .lead-title { font-size: clamp(28px, 4vw, 46px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 16px; }
     .lead-desc { font-size: 16px; color: var(--gray-5); line-height: 1.7; margin-bottom: 28px; }
     .lead-perks { display: flex; flex-direction: column; gap: 12px; }
@@ -168,10 +148,6 @@
     .form-input { width: 100%; padding: 12px 16px; background: var(--gray-2); border: 0.5px solid var(--gray-3); border-radius: 10px; color: var(--white); font-size: 14px; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s; }
     .form-input:focus { border-color: var(--copper); }
     .form-input::placeholder { color: var(--gray-4); }
-    .form-select { width: 100%; padding: 12px 16px; background: var(--gray-2); border: 0.5px solid var(--gray-3); border-radius: 10px; color: var(--white); font-size: 14px; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s; appearance: none; cursor: pointer; }
-    .form-select:focus { border-color: var(--copper); }
-    .form-select option { background: var(--gray-1); }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .form-submit { width: 100%; padding: 14px; border-radius: 10px; background: var(--copper); border: none; color: #fff; font-size: 15px; font-weight: 500; font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.2s; margin-top: 8px; }
     .form-submit:hover { background: var(--amber); transform: translateY(-1px); }
     .form-disclaimer { font-size: 11px; color: var(--gray-4); text-align: center; margin-top: 12px; line-height: 1.5; }
@@ -195,16 +171,10 @@
       nav { padding: 16px 20px; }
       .nav-links { display: none; }
       .apps-grid { grid-template-columns: 1fr; }
-      .app-card.featured, .app-card.vruta-card { grid-column: span 1; grid-template-columns: 1fr; }
-      .pricing-apps-grid { grid-template-columns: 1fr; }
-      .addons-grid { grid-template-columns: 1fr; }
-      .process-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .process-grid::before { display: none; }
+      .app-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 16px; text-align: center; }
-      .pricing-controls { flex-direction: column; align-items: flex-start; }
-      .plazo-tabs { flex-wrap: wrap; }
       .lead-inner { grid-template-columns: 1fr; gap: 40px; }
-      .form-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -225,13 +195,13 @@
   </a>
   <ul class="nav-links">
     <li><a href="#apps">Apps</a></li>
-    <li><a href="#precios">Precios</a></li>
     <li><a href="#proceso">Cómo funciona</a></li>
+    <li><a href="#contacto">Contacto</a></li>
     <li><a href="https://etrazia.com">← Etrazia</a></li>
   </ul>
   <div class="nav-cta">
     <a href="demo.html" class="btn-ghost">Ver demo</a>
-    <a href="contratacion.html" class="btn-primary">Contratar →</a>
+    <a href="#contacto" class="btn-primary">Agenda tu demo →</a>
   </div>
 </nav>
 
@@ -239,250 +209,234 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-  <div class="hero-badge"><div class="hero-badge-dot"></div>Tu negocio, digitalizado sin complicaciones</div>
+  <div class="hero-badge"><div class="hero-badge-dot"></div>Software a medida para tu negocio</div>
   <h1>Tu negocio,<br><span class="accent">digitalizado</span><span class="line2">sin complicaciones.</span></h1>
-  <p class="hero-desc">EtraziApp es una suite de aplicaciones diseñadas para que pequeñas y medianas empresas operen, vendan y crezcan con herramientas de clase mundial.</p>
+  <p class="hero-desc">Herramientas que se adaptan a ti — no al revés. Sin precios fijos, sin plantillas genéricas. Empezamos con una conversación.</p>
   <div class="hero-actions">
-    <a href="contratacion.html" class="btn-hero">Contratar ahora</a>
-    <a href="demo.html" class="btn-hero-ghost">Ver demo</a>
+    <a href="#contacto" class="btn-hero">Agenda tu demo gratis</a>
+    <a href="#apps" class="btn-hero-ghost">Ver apps →</a>
   </div>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-num">2</div><div class="hero-stat-label">Apps disponibles</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">3</div><div class="hero-stat-label">Apps disponibles</div></div>
     <div class="hero-stat-divider"></div>
-    <div class="hero-stat"><div class="hero-stat-num">S/ 150</div><div class="hero-stat-label">Desde por mes</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label">A tu medida</div></div>
     <div class="hero-stat-divider"></div>
-    <div class="hero-stat"><div class="hero-stat-num">24-48h</div><div class="hero-stat-label">Tiempo de entrega</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">Gratis</div><div class="hero-stat-label">Hasta tu demo</div></div>
   </div>
 </section>
 
 <!-- APPS -->
 <section class="section" id="apps">
-  <p class="section-label fade-up">Suite de aplicaciones</p>
-  <h2 class="section-title fade-up">Todo lo que tu negocio<br>necesita, en un solo lugar.</h2>
-  <p class="section-desc fade-up">Cada app está diseñada para un propósito específico. Contrata solo lo que necesitas.</p>
+  <p class="section-label fade-up">Nuestras apps</p>
+  <h2 class="section-title fade-up">Una plataforma,<br>múltiples herramientas.</h2>
+  <p class="section-desc fade-up">Cada app resuelve un problema real. Juntas, digitalizan tu operación completa.</p>
+
   <div class="apps-grid">
 
-    <!-- VCONTROL — span 2 con layout interno -->
+    <!-- VCONTROL — featured span 2 -->
     <div class="app-card featured fade-up">
       <div>
-        <div class="app-status"><div class="app-status-dot"></div> Disponible</div>
         <div class="app-icon" style="background:rgba(184,115,51,0.12);">📦</div>
         <div class="app-name">V<span>control</span></div>
-        <p class="app-desc">Gestión comercial completa. Inventario, CRM, ventas, finanzas con reporte SUNAT y pagos QR — todo personalizado para tu giro.</p>
-        <div class="app-tags"><span class="app-tag">Inventario</span><span class="app-tag">CRM</span><span class="app-tag">Ventas</span><span class="app-tag">Finanzas</span><span class="app-tag">SUNAT</span><span class="app-tag">Pagos QR</span></div>
-        <div class="app-price-inline" style="margin-top:20px;">
-          <span class="app-price-from">Desde</span>
-          <span><span class="app-price-val">S/ 150</span><span class="app-price-period"> /mes</span></span>
+        <p class="app-tagline">Ten el control total de tu negocio desde una sola pantalla — pedidos, stock, clientes y cobros.</p>
+        <div class="card-divider"></div>
+        <div class="benefit-list">
+          <div class="benefit-item">
+            <span class="benefit-check">✓</span>
+            <span class="benefit-text"><strong>Nunca más pierdas un pedido por WhatsApp.</strong> Cada orden queda registrada, asignada y rastreable.</span>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-check">✓</span>
+            <span class="benefit-text"><strong>Sabe exactamente qué tienes en stock</strong> en tiempo real, sin contar a mano.</span>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-check">✓</span>
+            <span class="benefit-text"><strong>Historial completo</strong> de cada cliente, cada venta y cada cobro — todo en un solo lugar.</span>
+          </div>
         </div>
       </div>
-      <div style="background:var(--gray-2);border:0.5px solid var(--gray-3);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:10px;">
-        <div style="font-size:12px;color:var(--gray-5);font-weight:500;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">Para negocios</div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Control de stock en tiempo real</div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> CRM con segmentación VIP / Frecuente</div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Comprobantes PDF automáticos</div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Reporte listo para SUNAT (RER)</div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> QR de cobro Yape / Plin</div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--amber);font-weight:500;"><span style="color:var(--green);">✓</span> Usuarios ilimitados incluidos</div>
-      </div>
-    </div>
-
-    <!-- VRUTA — span 2 con layout interno igual que Vcontrol -->
-    <div class="app-card vruta-card fade-up">
-      <div>
-        <div class="app-status"><div class="app-status-dot"></div> Disponible</div>
-        <div class="app-icon" style="background:rgba(76,175,125,0.12);">🚚</div>
-        <div class="app-name">V<span>ruta</span></div>
-        <p class="app-desc">Gestión de rutas y entregas para marcas DTC con flota propia. Optimiza despachos con algoritmo inteligente y seguimiento en tiempo real.</p>
-        <div class="app-tags"><span class="app-tag">Rutas</span><span class="app-tag">Entregas</span><span class="app-tag">Mapa</span><span class="app-tag">Flota</span><span class="app-tag">Excel</span><span class="app-tag">Mobile</span></div>
-        <div class="app-price-inline" style="margin-top:20px;">
-          <span class="app-price-from">Desde</span>
-          <span><span class="app-price-val">S/ 180</span><span class="app-price-period"> /mes</span></span>
+      <div class="app-preview">
+        <div class="preview-label">Pedidos del día</div>
+        <div class="preview-row">
+          <div>
+            <div class="preview-name">Aretes luna — LaFech</div>
+            <div class="preview-sub">María García · hace 10 min</div>
+          </div>
+          <span class="status-badge status-amber">En proceso</span>
         </div>
-      </div>
-      <div style="background:var(--gray-2);border:0.5px solid var(--gray-3);border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:10px;">
-        <div style="font-size:12px;color:var(--gray-5);font-weight:500;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">Para e-commerce y DTC</div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Optimización automática de ruta</div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Mapa visual en tiempo real</div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> App mobile para repartidores</div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Evidencia fotográfica de entrega</div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--gray-6);"><span style="color:var(--green);">✓</span> Historial y exportación Excel</div>
-        <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--amber);font-weight:500;"><span style="color:var(--green);">✓</span> Conductores ilimitados incluidos</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- PRECIOS SIMPLIFICADOS -->
-<section class="pricing-section" id="precios">
-  <div class="pricing-inner">
-    <p class="section-label fade-up">Inversión</p>
-    <h2 class="section-title fade-up">Transparente desde el primer día.</h2>
-    <p class="section-desc fade-up" style="margin-bottom:32px;">Inversión inicial única + membresía mensual. Descuentos por plazo de contrato.</p>
-
-    <div class="pricing-controls fade-up">
-      <div class="currency-switch">
-        <span class="currency-label active" id="lbl-sol">Soles (S/)</span>
-        <button class="switch-track" id="currency-toggle" onclick="toggleCurrency()"><div class="switch-knob"></div></button>
-        <span class="currency-label" id="lbl-usd">Dólares (USD)</span>
-      </div>
-      <div class="plazo-tabs">
-        <button class="plazo-tab active" onclick="setPlazo(0,this)">Mensual</button>
-        <button class="plazo-tab" onclick="setPlazo(1,this)">6 meses <span class="descuento-badge">-5%</span></button>
-        <button class="plazo-tab" onclick="setPlazo(2,this)">12 meses <span class="descuento-badge">-10%</span></button>
-        <button class="plazo-tab" onclick="setPlazo(3,this)">18 meses <span class="descuento-badge">-15%</span></button>
-        <button class="plazo-tab" onclick="setPlazo(4,this)">24 meses <span class="descuento-badge">-20%</span></button>
-      </div>
-    </div>
-
-    <table class="pricing-table fade-up">
-      <thead>
-        <tr>
-          <th>App</th>
-          <th>Inversión inicial</th>
-          <th>Membresía / mes</th>
-          <th>Incluye</th>
-          <th>Estado</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <div class="pt-app-name">📦 Vcontrol</div>
-            <div class="pt-app-sub">Gestión comercial completa</div>
-          </td>
-          <td><span class="pt-setup" id="setup-vc">S/ 500</span></td>
-          <td>
-            <span class="pt-price" id="mem-vc">S/ 150</span>
-            <span class="pt-price-orig" id="mem-vc-orig" style="display:none;"></span>
-          </td>
-          <td><span class="pt-incl">Branding · Customización · 5h capacitación · Dominio · Usuarios ilimitados</span></td>
-          <td><span class="pt-badge-avail">Disponible</span></td>
-        </tr>
-        <tr>
-          <td>
-            <div class="pt-app-name">🚚 Vruta</div>
-            <div class="pt-app-sub">Rutas y entregas DTC</div>
-          </td>
-          <td><span class="pt-setup" id="setup-vr">S/ 600</span></td>
-          <td>
-            <span class="pt-price" id="mem-vr">S/ 180</span>
-            <span class="pt-price-orig" id="mem-vr-orig" style="display:none;"></span>
-          </td>
-          <td><span class="pt-incl">Branding · Customización · 5h capacitación · Dominio · Conductores ilimitados</span></td>
-          <td><span class="pt-badge-avail">Disponible</span></td>
-        </tr>
-
-      </tbody>
-    </table>
-
-    <div class="addons-section fade-up">
-      <div class="addons-title">Servicios adicionales</div>
-      <div class="addons-desc">Complementa tu app con soporte extendido o funcionalidades a medida.</div>
-      <div class="addons-grid">
-        <div class="addon-card">
-          <div class="addon-icon">🎓</div>
-          <div class="addon-info"><div class="addon-name">Capacitación extra</div><div class="addon-desc">Sesiones adicionales para tu equipo</div></div>
-          <div class="addon-price">S/ 80 / hora</div>
+        <div class="preview-row">
+          <div>
+            <div class="preview-name">Collar dorado x2</div>
+            <div class="preview-sub">Lucía Torres · hace 45 min</div>
+          </div>
+          <span class="status-badge status-green">Entregado</span>
         </div>
-        <div class="addon-card">
-          <div class="addon-icon">⚙️</div>
-          <div class="addon-info"><div class="addon-name">Nueva funcionalidad</div><div class="addon-desc">Desarrollo a medida por requerimiento</div></div>
-          <div class="addon-price">Cotización</div>
+        <div class="preview-row">
+          <div>
+            <div class="preview-name">Pulsera plata</div>
+            <div class="preview-sub">Carlos Ruiz · hace 2h</div>
+          </div>
+          <span class="status-badge status-gray">Pendiente</span>
+        </div>
+        <div class="preview-footer">
+          <span style="color:var(--gray-5);">Stock disponible</span>
+          <span style="color:var(--green);">18 unidades</span>
         </div>
       </div>
     </div>
 
-    <div class="pricing-note fade-up">
-      <strong style="color:var(--gray-6);">Política de cancelación anticipada:</strong>
-      Si cancelas antes de culminar el plazo contratado, se aplica una penalización del <strong style="color:var(--gray-6);">20% del monto total restante</strong>.
-      Contratos mensuales sin penalización.
+    <!-- VRUTA -->
+    <div class="app-card fade-up" style="--card-color:rgba(76,175,125,0.06);">
+      <div class="app-icon" style="background:rgba(76,175,125,0.1);">🚚</div>
+      <div class="app-name">V<span>ruta</span></div>
+      <p class="app-tagline">Tu operación de entregas en piloto automático — sin llamadas, sin caos.</p>
+      <div class="card-divider"></div>
+      <div class="benefit-list" style="margin-bottom:20px;">
+        <div class="benefit-item">
+          <span class="benefit-check">✓</span>
+          <span class="benefit-text"><strong>Tus repartidores saben su ruta</strong> sin que los llames.</span>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-check">✓</span>
+          <span class="benefit-text"><strong>Tus clientes saben cuándo llega</strong> su pedido.</span>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-check">✓</span>
+          <span class="benefit-text"><strong>Tú ves todo el mapa</strong> desde tu celular en tiempo real.</span>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="app-preview">
+        <div class="preview-label">Repartos de hoy</div>
+        <div class="ruta-row"><span>Repartidor 1 — Carlos</span><span style="color:var(--green);">4 de 5 ✓</span></div>
+        <div class="ruta-row"><span>Repartidor 2 — José</span><span style="color:var(--amber);">3 de 6 en curso</span></div>
+        <div class="ruta-row"><span>Tiempo promedio</span><span style="color:var(--gray-6);">22 min</span></div>
+      </div>
     </div>
+
+    <!-- VLOYALTY -->
+    <div class="app-card fade-up" style="--card-color:rgba(184,115,51,0.06);">
+      <div class="app-icon" style="background:rgba(184,115,51,0.1);">⭐</div>
+      <div class="app-name">V<span>loyalty</span></div>
+      <p class="app-tagline">Convierte compradores en clientes frecuentes — sin esfuerzo de tu parte.</p>
+      <div class="card-divider"></div>
+      <div class="benefit-list" style="margin-bottom:20px;">
+        <div class="benefit-item">
+          <span class="benefit-check">✓</span>
+          <span class="benefit-text"><strong>Tus clientes acumulan puntos</strong> y quieren volver a comprar.</span>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-check">✓</span>
+          <span class="benefit-text"><strong>Tú decides las recompensas</strong> y las reglas del programa.</span>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-check">✓</span>
+          <span class="benefit-text"><strong>Se activa solo</strong> — sin operación manual de tu parte.</span>
+        </div>
+      </div>
+      <div class="card-divider"></div>
+      <div class="app-preview">
+        <div class="preview-label">Clientes activos</div>
+        <div class="loyalty-client">
+          <div class="loyalty-avatar">MG</div>
+          <div style="flex:1">
+            <div class="pts-meta"><span class="pts-name">María G.</span><span class="pts-val">820 pts</span></div>
+            <div class="pts-bar-wrap"><div class="pts-bar" style="width:82%"></div></div>
+            <div class="pts-hint">Faltan 180 pts para su regalo</div>
+          </div>
+        </div>
+        <div class="loyalty-client">
+          <div class="loyalty-avatar">LT</div>
+          <div style="flex:1">
+            <div class="pts-meta"><span class="pts-name">Lucía T.</span><span class="pts-val">450 pts</span></div>
+            <div class="pts-bar-wrap"><div class="pts-bar" style="width:45%"></div></div>
+            <div class="pts-hint">Nivel: Cliente frecuente</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- PROCESO -->
-<section class="section" id="proceso">
-  <p class="section-label fade-up">Cómo funciona</p>
-  <h2 class="section-title fade-up">De cero a operando<br>en 24-48 horas.</h2>
-  <p class="section-desc fade-up">Sin instalaciones. Sin servidores. Sin complicaciones técnicas.</p>
+<section class="section" id="proceso" style="border-top:0.5px solid var(--gray-3);">
+  <p class="section-label fade-up">El proceso</p>
+  <h2 class="section-title fade-up">De la conversación<br>a tu demo, sin costo.</h2>
+  <p class="section-desc fade-up">Solo pagas cuando decides seguir adelante. Sin presión, sin letra chica.</p>
+
   <div class="process-grid">
     <div class="process-step fade-up">
       <div class="process-num">1</div>
-      <div class="process-title">Elige tu app</div>
-      <p class="process-desc">Selecciona la app que necesitas y completa el formulario de contacto.</p>
+      <div>
+        <div class="process-title">Conversamos</div>
+        <p class="process-desc">Cuéntanos tu negocio, tus procesos y tus dolores. Sin formularios largos ni reuniones interminables.</p>
+      </div>
     </div>
     <div class="process-step fade-up">
       <div class="process-num">2</div>
-      <div class="process-title">Paga de forma segura</div>
-      <p class="process-desc">Pago con MercadoPago: tarjeta, Yape, Plin o transferencia. Débito automático mensual.</p>
+      <div>
+        <div class="process-title">Levantamos</div>
+        <p class="process-desc">Mapeamos tus necesidades reales y definimos qué apps tienen sentido para tu operación.</p>
+      </div>
     </div>
     <div class="process-step fade-up">
       <div class="process-num">3</div>
-      <div class="process-title">Configuramos todo</div>
-      <p class="process-desc">En 24-48 horas brandeamos y personalizamos tu app con tu marca y giro de negocio.</p>
+      <div>
+        <div class="process-title">Tu demo personalizada</div>
+        <p class="process-desc">Construimos una demo con tu marca, tu catálogo y tu flujo real. Ves exactamente lo que tendrías.</p>
+      </div>
     </div>
-    <div class="process-step fade-up">
+    <div class="process-step highlight fade-up">
       <div class="process-num">4</div>
-      <div class="process-title">Empieza a operar</div>
-      <p class="process-desc">Recibes acceso a tuempresa.etraziapp.com con 5 horas de capacitación incluidas.</p>
+      <div>
+        <div class="process-title">Decides tú</div>
+        <p class="process-desc">Con la demo en mano, conversamos la propuesta. Solo sigues si tiene sentido para tu negocio.</p>
+      </div>
     </div>
+  </div>
+
+  <div class="process-note fade-up">
+    Los pasos 1, 2 y 3 son completamente gratuitos — sin compromisos.
   </div>
 </section>
 
 <!-- LEAD FORM -->
 <section class="lead-section" id="contacto">
   <div class="lead-inner">
-    <div class="lead-copy fade-up">
-      <p class="section-label">Contáctanos</p>
-      <h2 class="lead-title">¿Listo para escalar<br>tu negocio?</h2>
-      <p class="lead-desc">Un asesor de Etrazia te contactará en menos de 24 horas para resolver tus dudas y guiarte en el proceso de contratación.</p>
+    <div class="fade-up">
+      <p class="section-label">Empecemos</p>
+      <h2 class="lead-title">Agenda tu demo<br><span style="color:var(--amber);">gratis hoy.</span></h2>
+      <p class="lead-desc">Un asesor de Etrazia te contacta por WhatsApp para agendar una llamada de 20 minutos — sin costo, sin compromisos.</p>
       <div class="lead-perks">
-        <div class="lead-perk"><div class="lead-perk-icon">⚡</div> Respuesta en menos de 24 horas</div>
-        <div class="lead-perk"><div class="lead-perk-icon">🎨</div> Demo personalizada para tu negocio</div>
-        <div class="lead-perk"><div class="lead-perk-icon">🎓</div> 5 horas de capacitación incluidas</div>
-        <div class="lead-perk"><div class="lead-perk-icon">🔒</div> Sin compromisos hasta que confirmes</div>
+        <div class="lead-perk"><div class="lead-perk-icon">⚡</div>Respuesta en menos de 24 horas</div>
+        <div class="lead-perk"><div class="lead-perk-icon">🎨</div>Demo con tu marca y tu catálogo real</div>
+        <div class="lead-perk"><div class="lead-perk-icon">🔒</div>Sin compromisos hasta que confirmes</div>
       </div>
     </div>
 
     <div class="lead-form fade-up">
       <div id="form-body">
-        <div class="lead-form-title">Solicita información</div>
-        <div class="lead-form-sub">Completa el formulario y te contactamos a la brevedad.</div>
+        <div class="lead-form-title">Agenda tu demo gratuita</div>
+        <div class="lead-form-sub">Completa el formulario y te escribimos por WhatsApp.</div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Nombre</label>
-            <input class="form-input" type="text" id="f-nombre" placeholder="Tu nombre" />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Empresa</label>
-            <input class="form-input" type="text" id="f-empresa" placeholder="Nombre de tu negocio" />
-          </div>
+        <div class="form-group">
+          <label class="form-label">Nombre</label>
+          <input class="form-input" type="text" id="f-nombre" placeholder="Tu nombre" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Negocio</label>
+          <input class="form-input" type="text" id="f-empresa" placeholder="Nombre de tu empresa o negocio" />
         </div>
 
         <div class="form-group">
           <label class="form-label">WhatsApp</label>
-          <input class="form-input" type="tel" id="f-wsp" placeholder="+51 999 999 999" />
+          <input class="form-input" type="tel" id="f-wsp" placeholder="+51 9XX XXX XXX" />
         </div>
 
-        <div class="form-group">
-          <label class="form-label">App de interés</label>
-          <select class="form-select" id="f-app">
-            <option value="">Selecciona una app...</option>
-            <option value="Vcontrol">📦 Vcontrol — Gestión comercial</option>
-            <option value="Vruta">🚚 Vruta — Rutas y entregas</option>
-            <option value="Ambas">📦🚚 Ambas apps</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">¿Cuál es tu giro de negocio?</label>
-          <input class="form-input" type="text" id="f-giro" placeholder="Ej: Joyería, ropa, delivery de comida..." />
-        </div>
-
-        <button class="form-submit" onclick="submitLead()">Solicitar información →</button>
-        <p class="form-disclaimer">Al enviar, un asesor de Etrazia te contactará por WhatsApp. Sin spam.</p>
+        <button class="form-submit" onclick="submitLead()">Agendar demo gratuita →</button>
+        <p class="form-disclaimer">Un asesor te responde en menos de 24 horas. Sin spam.</p>
       </div>
 
       <div class="form-success" id="form-success">
@@ -516,55 +470,18 @@
 </footer>
 
 <script>
-/* ── PRICING ── */
-const precios = {
-  sol: { vc: { setup: 500, mem: 150 }, vr: { setup: 600, mem: 180 } },
-  usd: { vc: { setup: 150, mem: 45 },  vr: { setup: 180, mem: 55 } }
-};
-const descuentos = [0, 0.05, 0.10, 0.15, 0.20];
-let moneda = 'sol', plazoIdx = 0;
-
-function toggleCurrency() {
-  moneda = moneda === 'sol' ? 'usd' : 'sol';
-  document.getElementById('currency-toggle').classList.toggle('usd', moneda === 'usd');
-  document.getElementById('lbl-sol').classList.toggle('active', moneda === 'sol');
-  document.getElementById('lbl-usd').classList.toggle('active', moneda === 'usd');
-  updatePrices();
-}
-function setPlazo(idx, btn) {
-  plazoIdx = idx;
-  document.querySelectorAll('.plazo-tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  updatePrices();
-}
-function updatePrices() {
-  const sym = moneda === 'sol' ? 'S/ ' : 'USD ';
-  const desc = descuentos[plazoIdx];
-  ['vc','vr'].forEach(k => {
-    const p = precios[moneda][k];
-    const fin = Math.round(p.mem * (1 - desc));
-    document.getElementById('setup-' + k).textContent = sym + p.setup;
-    document.getElementById('mem-' + k).textContent = sym + fin;
-    const orig = document.getElementById('mem-' + k + '-orig');
-    if (desc > 0) { orig.textContent = sym + p.mem; orig.style.display = 'block'; }
-    else { orig.style.display = 'none'; }
-  });
-}
-
 /* ── LEAD FORM ── */
 function submitLead() {
   const nombre  = document.getElementById('f-nombre').value.trim();
   const empresa = document.getElementById('f-empresa').value.trim();
   const wsp     = document.getElementById('f-wsp').value.trim();
-  const app     = document.getElementById('f-app').value;
-  const giro    = document.getElementById('f-giro').value.trim();
 
-  if (!nombre || !wsp || !app) {
-    alert('Por favor completa al menos nombre, WhatsApp y app de interés.');
+  if (!nombre || !wsp) {
+    alert('Por favor completa al menos tu nombre y WhatsApp.');
     return;
   }
 
-  const msg = `Hola, soy ${nombre} de ${empresa || 'mi negocio'}. Me interesa ${app}. Giro: ${giro || 'no especificado'}. Mi WhatsApp: ${wsp}`;
+  const msg = `Hola, soy ${nombre}${empresa ? ' de ' + empresa : ''}. Me interesa conocer más sobre EtraziApp y agendar una demo para mi negocio. Mi WhatsApp: ${wsp}`;
   window.open('https://wa.me/51922339690?text=' + encodeURIComponent(msg), '_blank');
 
   document.getElementById('form-body').style.display = 'none';
